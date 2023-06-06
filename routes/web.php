@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ItemTypeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [AdminController::class, 'index'])->name('trang-chu')->middleware('web');
+Route::get('/home', [AdminController::class, 'index'])->name('trang-chu')->middleware('web');
+
+Route::group(['prefix' => '/loai-bai-dang', 'as' => 'loai-bai-dang.'], function () {
+    Route::get('/', [ItemTypeController::class, 'index'])->name('index');
 });

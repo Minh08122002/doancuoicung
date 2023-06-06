@@ -1,0 +1,161 @@
+.sidebar {
+    width: 250px;
+    background-color: #000551;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    overflow: -moz-scrollbars-none;
+    }
+
+    /* Sidebar links */
+    .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    }
+
+    /* Active/current link */
+    .sidebar a.active {
+    background-color: #04AA6D;
+    color: white;
+    }
+
+    /* Links on mouse-over */
+    .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+    }
+
+    /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+    div.content {
+    margin-left: 250px;
+    padding: 1px 16px;
+    height: auto;
+    }
+
+    /* On screens that are less than 700px wide, make the sidebar into a topbar */
+    @media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+    }
+
+    /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+    @media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+    }
+    .card-container {
+display: flex;
+}
+
+.card {
+flex: 1;
+max-width: 250px;    
+margin-right: 10px;
+display: flex;
+align-items: center;
+padding-bottom: 20px;
+padding-left: 10px;
+}
+
+.card-avatar {
+display: block;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+margin-right: 10px;
+}
+
+.card-content {
+flex: 1;
+}
+
+.card-title {
+font-size: 20px;
+color: white;
+font-weight: bold;
+margin-bottom: 10px;
+}
+
+.card-description {
+font-size: 14px;
+color: #ffffff;
+}
+.dropdown {
+    margin-bottom: 10px;
+    padding: 2px;
+    padding-left: 10px;
+    
+  }
+
+  .dropdown-button {
+    display: flex;
+    width: 230px;
+    align-items: center;
+    background-color: rgba(199, 199, 199, 0.373); /* Màu nền mờ */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    justify-content: space-between;
+
+    
+  }
+
+  .dropdown-button i {
+    margin-right: 20px;
+    font-style: normal;
+    font-size: 15px;
+    
+    
+  }
+
+  .dropdown-menu {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+    width: 230px;
+  }
+
+  .dropdown-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .dropdown-menu li {
+    margin-bottom: 5px;
+  }
+
+  .dropdown-menu a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px;
+    transition: background-color 0.3s;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #fd0000;
+  }
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
