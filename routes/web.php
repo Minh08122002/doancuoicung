@@ -14,6 +14,9 @@ use App\Http\Controllers\SubcategoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('login',[AdminController::class,'login'])->name('dang-nhap');
+Route::post('dang-nhap',[AdminController::class,'store'])->name('login');
+Route::get('di',[AdminController::class,'create'])->name('di');
 
 Route::get('/', [AdminController::class, 'index'])->name('trang-chu')->middleware('web');
 Route::get('/home', [AdminController::class, 'index'])->name('trang-chu')->middleware('web');

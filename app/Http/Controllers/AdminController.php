@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class AdminController extends Controller
 {
     /**
@@ -13,22 +13,38 @@ class AdminController extends Controller
     {
         return view('layouts.layoutadmin');
     }
+    public function login()
+    {
+        return view('login');
+    }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+    
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('di');
+        }
+   else
+        return redirect("login")->withSuccess('Login details are not valid');
+    }
+    public function create()
+    {
+        return view('layouts.footer');
+    }
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        
-    }
+   
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
