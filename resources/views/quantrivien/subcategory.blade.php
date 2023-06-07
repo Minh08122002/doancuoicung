@@ -1,7 +1,6 @@
 @extends('layouts.layoutadmin')
 
-@section('title', 'Danh sách loại tin tức')
-
+@section('title', 'Danh sách loại tin tức con')
 @section('content')
 <head>
 <link rel="stylesheet" href="{{ url('/css/item_type.css')}}">
@@ -9,12 +8,12 @@
 <form action="{{ route('loai-bai-dang.index') }}" method="GET">
     @csrf
     <div class="container">
-        <h3>Thêm loại tin tức</h3>
-        <button class="favorite styled" type="button" style="margin: 10px">Thêm loại tin tức</button>
+        <h3>Thêm loại tin tức con</h3>
+        <button class="favorite styled" type="button" style="margin: 10px">Thêm loại tin tức con</button>
     </div>
     <div class="form-group">
         <div>
-            <h3 class="item">Số lượng:{{$itemTypeCount}}</h3>
+            <h3 class="item">Số lượng: {{ $itemTypeCount }}</h3>
         </div>
         <h3 class="items">Trạng thái:</h3>
         <select class="mySelect" style="height: 40px; margin-top: 18px;" name="status">
@@ -25,11 +24,8 @@
         <h3 class="items">Loại:</h3>
         <select class="mySelect" style="height: 40px; margin-top: 18px;" name="name">
             <option value="">Loại</option>
-            @foreach($uniqueItemType as $uniqueItemTypes)
-                <option value="{{ $uniqueItemTypes->name }}">{{ $uniqueItemTypes->name }}</option>
-                @foreach($uniqueItemTypes->children as $child)
-                    <option value="{{ $child->id }}" style = "padding: 20px;"> {{ $child->name }}</option>
-                @endforeach
+            @foreach($uniqueItemType as $uniqueItemType)
+                <option value="{{ $uniqueItemType->name }}">{{ $uniqueItemType->name }}</option>
             @endforeach
         </select>
         <button class="favorite styled" type="submit" style="margin-left: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;">Lọc</button>
@@ -71,4 +67,6 @@
         <!-- and so on... -->
     </tbody>
 </table>
+
+
 @endsection

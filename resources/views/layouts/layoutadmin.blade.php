@@ -32,7 +32,7 @@
             <div class="sidebar" style=" left: 0px; top: 0px; ">
                 <div class="card-container">
                     <div class="card">
-                      <img class="card-avatar" src="image/1.png" alt="Avatar 1">
+                      <img class="card-avatar" src="#" alt="Avatar 1">
                       <div class="card-content">
                         <h2 class="card-title">admin</h2>
                         <p class="card-description">admin@gmail.com</p>
@@ -119,6 +119,7 @@
                     <ul>
                       <li><a href="#">Bài đăng</a></li>
                       <li><a href="#">Loại bài đăng</a></li>
+                      <li><a href="{{route('loai-bai-dang-con.index')}}">Loại bài đăng con</a></li>
                     </ul>
                   </div>
                 </div>

@@ -23,12 +23,7 @@ class itemtype extends Model
     }
 /** trả về danh sách các loại tin tức con của một loại tin tức cha cụ thể code dưới đang sai*/
     public function children()
-    {
-        return $this->hasMany(Category::class, 'parent_id');
+        {
+            return $this->hasMany(Subcategory::class, 'parent_id');
+        }
     }
-    
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-}
