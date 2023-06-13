@@ -34,7 +34,7 @@ class AdminController extends Controller
     }
     public function create()
     {
-        return view('layouts.footer');
+        return view('user.home');
     }
     /**
      * Show the form for creating a new resource.
