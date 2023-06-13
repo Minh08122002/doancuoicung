@@ -53,9 +53,8 @@
                   </button>
                   <div class="dropdown-menu">
                     <ul>
-                      <li><a href="#">General</a></li>
-                      <li><a href="#">Profile</a></li>
-                      <li><a href="#">Security</a></li>
+                      <li><a href="{{route('admin.tai-khoan.index')}}">Danh sách tài khoản</a></li>
+                      <li><a href="{{route('admin.tai-khoan.show-them-tai-khoan')}}">Thêm tài khoản</a></li>
                     </ul>
                   </div>
                 </div>

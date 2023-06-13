@@ -70,5 +70,17 @@
     @endforeach
         <!-- and so on... -->
     </tbody>
+    @include('sweetalert::alert')
+        <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+        <script>
+            @if (session('success'))
+                swal("Thành công", "{{ session('success') }}", "success");
+            @endif
+
+            @if (session('error'))
+                swal("Lỗi", "{{ session('error') }}", "error");
+            @endif
+        </script>
+        </script>
 </table>
 @endsection

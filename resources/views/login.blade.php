@@ -26,6 +26,18 @@
             </div>
             <input type="submit" value="Đăng nhập" class="form-submit">
         </form>
+        @include('sweetalert::alert')
+        <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+        <script>
+            @if (session('success'))
+                swal("Thành công", "{{ session('success') }}", "success");
+            @endif
+
+            @if (session('error'))
+                swal("Lỗi", "{{ session('error') }}", "error");
+            @endif
+        </script>
+        </script>
     </div>
     </div>
 </body>

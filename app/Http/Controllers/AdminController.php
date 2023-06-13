@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
@@ -41,7 +42,7 @@ class AdminController extends Controller
     }
     public function index(Request $request)
 {
-    $query = User::query()->where('role', '<>', 0);;
+    $query = User::query()->where('role', '<>', 0);
     
     /**
      * Lấy thông tin nhập từ người dùng.
@@ -56,7 +57,7 @@ class AdminController extends Controller
     }
 
     $listUser = $query->paginate(6);
-    $userCount = User::count();
+    $userCount = User::where('role', '<>', 0)->count();
 
     return view('quantrivien.tai-khoan.user', compact('listUser', 'userCount'));
 }
@@ -80,14 +81,18 @@ class AdminController extends Controller
         $role = intval($user->role);
         // Chuyển hướng tới trang tương ứng với vai trò
         if ($role == 1 || $role == 0) {
+            Alert::success('Đăng nhập thành công', 'xin chào: '.$user->name);
             return redirect()->route('admin.loai-bai-dang.index');
         } elseif ($role == 2) {
             return redirect()->route('admin.loai-bai-dang.index');
         } elseif ($role == 3) {
-            return redirect()->route('parent');
+            Alert::error('Đăng nhập không thành công', 'Tài khoản của bạn không có quyền truy cập vào trang quản lí!! ');
+            return redirect()->back();
         }
+        
     } else {
-        return redirect("dang-nhap",)->withSuccess('Login details are not valid');
+        Alert::error('Đăng nhập không thành công', 'Tài khoản hoặc mật khẩu không chính xác! ');
+        return redirect("dang-nhap");
     }
 }
 
@@ -151,16 +156,26 @@ class AdminController extends Controller
             $avatarUrl = null;
         }
         $user = User::find($id);
-        $user->password = hash::make($request->input('password'));
-        $user->name = $request->input('name');
-        $user->phone = $request->input('phone');
-        $user->address = $request->input('address');
-        $user->name = $request->input('role');
-        $user->avatar = $avatarUrl;
-        // Lưu thay đổi vào cơ sở dữ liệu
-        $user->save();
+        $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
+        $user->name = $request->input('name') ?? $user->name;
+        $newPhone = $request->input('phone') ?? $user->phone;
+            // Kiểm tra số điện thoại mới có trùng với người dùng khác không
+            $existingUser = User::where('phone', $newPhone)->first(); //first trả về kết quả đầu tiên của 1 đối tượng nếu không có trả về null
+            if ($existingUser) { // kiểm tra nếu trùng
+                Alert::error('Lỗi', 'Số điện thoại đã tồn tại.');
+                return redirect()->back()->withInput();
+            }
     
-        return redirect()->back()->with('success', 'Cập nhật tài khoản thành công.');
+            // Cập nhật số điện thoại
+        $user->phone = $newPhone;
+        $user->address = $request->input('address') ?? $user->address;
+        $user->role = $request->input('role') ?? $user->role;
+        $user->avatar = $avatarUrl ?? $user->avatar;
+
+        $user->save();
+        Alert::success('Thành công', 'Cập nhật tài khoản thành công.');
+    
+        return redirect()->back();
     }
 
     /**
