@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\itemtype;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 
 class ItemTypeController extends Controller
 {
@@ -45,18 +46,29 @@ class ItemTypeController extends Controller
 
         $uniqueItemType = ItemType::with('children')->get();
 
-        return view('quantrivien.item_layout', compact('listItemType'), ['itemTypeCount' => $itemTypeCount, 'itemType' => $itemType, 'uniqueItemType'=>$uniqueItemType]);
+        return view('quantrivien.loai-bai-dang.item_layout', compact('listItemType'), ['itemTypeCount' => $itemTypeCount, 'itemType' => $itemType, 'uniqueItemType'=>$uniqueItemType]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function showitemtype(){
-        return view('quantrivien.add_item_layout');
+    public function showadd(){
+        return view('quantrivien.loai-bai-dang.add_item_layout');
     }
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:item_type', // Kiểm tra tên loại bài đăng là duy nhất trong bảng 'item_types'
+            // Các quy tắc kiểm tra khác (nếu có)
+        ]);
+        $itemType = new ItemType();
+        $itemType->name = $validatedData['name'];
+        $itemType->created_by = Auth::id();
+        $itemType->comments = $request->input('comments');
+        $itemType->status = $request->input('status');
+        $itemType->save();
+    
+        return redirect()->back();
     }
 
     /**

@@ -18,8 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->text('comments')->nullable();
             $table->integer('status');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
             $table->softDeletes();
         
             $table->foreign('created_by')->references('id')->on('user')->onDelete('set null');

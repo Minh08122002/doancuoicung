@@ -13,7 +13,7 @@
         <img style="width: 300px;height: 300px;padding-top: 30px;" src="">
     </div>
     <div id="wrapper">
-        <form action="{{ route('login')}}" method="post" id="form-login">
+        <form action="{{ route('dang-nhap')}}" method="post" id="form-login">
             @csrf
             <h1 class="form-heading">ĐĂNG NHẬP</h1>
             <div class="form-group">

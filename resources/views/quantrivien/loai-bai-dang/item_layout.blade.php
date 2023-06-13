@@ -6,7 +6,7 @@
 <head>
 <link rel="stylesheet" href="{{ url('/css/item_type.css')}}">
 </head>
-<form action="{{ route('loai-bai-dang.index') }}" method="GET">
+<form action="{{ route('admin.loai-bai-dang.index') }}" method="GET">
     @csrf
     <div class="container">
         <h3>Thêm loại tin tức</h3>
