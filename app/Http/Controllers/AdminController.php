@@ -125,8 +125,7 @@ class AdminController extends Controller
 
         if ($user) {
             $user->delete();
-            // Thực hiện xóa thành công
-            return redirect()->route('admin.tai-khoan.index')->with('success', 'Xóa tài khoản thành công!');
+            return redirect()->route('admin.tai-khoan.index');
         } else {
             // Người dùng không tồn tại
             return redirect()->route('admin.tai-khoan.index')->with('error', 'Không tìm thấy tài khoản!');

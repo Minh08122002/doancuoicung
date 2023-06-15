@@ -32,24 +32,37 @@
   </div>
   <div class="inputs">
       <h3 style="padding:10px">Loại:</h3>
-        <select class="mySelect" style="height: 40px;margin-right: 10px;" name="item_type_id">
+        <select class="mySelect" style="height: 40px;margin-right: 10px;" name="parent_id">
                 <option value="">Loại</option>
-                @foreach($uniqueItemType as $uniqueItemType)
-                    <option value="{{ $uniqueItemType->id }}">{{ $uniqueItemType->name }}</option>
-                    @foreach($uniqueItemType->children as $child)
-                        <option value="{{ $child->id }}" style = "padding: 20px;"> {{ $child->name }}</option>
-                    @endforeach
+                @foreach($uniqueItemType as $itemType)
+                <option value="{{ $itemType->id }}">{{ $itemType->name }}</option>
+                @foreach($itemType->children as $child)
+                    <option value="{{ $child->id }}" style="padding: 20px;">{{ $child->name }}</option>
                 @endforeach
+            @endforeach
         </select>
   </div>
   <div>
       <h3 style="margin-right: 10px;">Nội dung: </h3>
       <textarea name="content"></textarea>
-  <div>
+  </div>
 </div>
 <button type="submit" style=" float: right; margin-left: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;">Đăng bài</button>
+ @include('sweetalert::alert')
+        <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+        <script>
+            @if (session('success'))
+                swal("Thành công", "{{ session('success') }}", "success");
+            @endif
+
+            @if (session('error'))
+                swal("Lỗi", "{{ session('error') }}", "error");
+            @endif
+        </script>
+        </script>
 <script>
     CKEDITOR.replace( 'content' );
 </script>
+
 </form>
 @endsection

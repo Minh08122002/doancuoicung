@@ -37,7 +37,7 @@
       <input type="text" name="address" id="address" placeholder="{{$user->address}}">
     </div>
     <div class="inputs">
-    <h3 style="padding-right: 10px;">Trạng thái: </h3>
+    <h3 style="padding-right: 10px;">Chức vụ: </h3>
      <select class="mySelect" style="height: 40px; width: 110px; margin-right: 10px;" name="role">
             <option value="2">Giáo viên</option>
             <option value="1">Quản trị viên</option>

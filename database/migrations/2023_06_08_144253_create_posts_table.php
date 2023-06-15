@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('created_by');
             $table->bigInteger('updated_by')->nullable();
             $table->string('title');
-            $table->integer('item_type_id');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('content');
             $table->string('image_1')->nullable();
             $table->string('image_2')->nullable();
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('parent_id')->references('id')->on('subcategory')->onDelete('set null');
         });
     }
 

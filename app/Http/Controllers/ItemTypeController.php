@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\itemtype;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class ItemTypeController extends Controller
 {
@@ -84,7 +86,15 @@ class ItemTypeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $itemtype = itemtype::find($id);
+        $createdByName = null;
+        $updatedByName = null;
+
+        if ($itemtype) {
+            $createdByName = $itemtype->createdBy->name;
+            $updatedByName = $itemtype->updatedBy->name ?? null;
+        }
+        return view('quantrivien.loai-bai-dang.show_item_layout', compact('itemtype', 'createdByName','updatedByName'));
     }
 
     /**
@@ -92,22 +102,49 @@ class ItemTypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $itemType = ItemType::find($id);
+        return view('quantrivien.loai-bai-dang.edit_item_layout', compact('itemType'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
+{
+    $validator = Validator::make($request->all(), [
+        'status' => 'required'
+    ]);
+
+    if ($validator->fails()) {
+        Alert::error('Lỗi', 'Vui lòng điền đầy đủ thông tin.');
+        return redirect()->back()->withErrors($validator)->withInput();
     }
+
+    $itemType = ItemType::find($id);
+    $itemType->name = $request->input('name') ?? $itemType->name;
+    $itemType->status = $request->input('status');
+    $itemType->updated_by = Auth::id();
+    $itemType->updated_at = now();
+    $itemType->save();
+
+    Alert::success('Thành công', 'Cập nhật loại bài đăng thành công.');
+    return redirect()->back();
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $itemType = ItemType::find($id);
+
+        if ($itemType) {
+            $itemType->delete();
+            return redirect()->route('admin.loai-bai-dang.index');
+        } else {
+            // Người dùng không tồn tại
+            return redirect()->route('admin.loai-bai-dang.index');
+        }
     }
 }

@@ -1,20 +1,21 @@
 @extends('layouts.layoutadmin')
 
-@section('title', 'Danh sách loại tin tức')
+@section('title', 'Danh sách bài đăng')
 
 @section('content')
 <head>
 <link rel="stylesheet" href="{{ url('/css/item_type.css')}}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<form action="{{ route('admin.loai-bai-dang.index') }}" method="GET">
+<form action="{{ route('admin.bai-dang.index') }}" method="GET">
     @csrf
     <div class="container">
-        <h3>Thêm loại tin tức</h3>
-        <a href = {{route('admin.loai-bai-dang.showadd')}} class="favorite styled" type="button" style="margin: 10px">Thêm loại tin tức</a>
+        <h3>Thêm bài đăng</h3>
+<a href="{{ route('admin.bai-dang.addpost') }}" class="favorite styled" style="margin: 10px">Thêm bài đăng</a>
     </div>
     <div class="form-group">
         <div>
-            <h3 class="item">Số lượng:{{$itemTypeCount}}</h3>
+            <h3 class="item">Số lượng:{{$itemPostCount}}</h3>
         </div>
         <h3 class="items">Trạng thái:</h3>
         <select class="mySelect" style="height: 40px; margin-top: 18px;" name="status">
@@ -25,47 +26,50 @@
         <h3 class="items">Loại:</h3>
         <select class="mySelect" style="height: 40px; margin-top: 18px;" name="name">
             <option value="">Loại</option>
-            @foreach($uniqueItemType as $uniqueItemTypes)
-                <option value="{{ $uniqueItemTypes->name }}">{{ $uniqueItemTypes->name }}</option>
-                @foreach($uniqueItemTypes->children as $child)
-                    <option value="{{ $child->id }}" style = "padding: 20px;"> {{ $child->name }}</option>
+           @foreach($uniqueItemType as $item)
+                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                @foreach($item->children as $child)
+                    <option value="{{ $child->name }}" style="padding: 20px;">{{ $child->name }}</option>
                 @endforeach
             @endforeach
+
         </select>
         <button class="favorite styled" type="submit" style="margin-left: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;">Lọc</button>
-        <button class="favorite styled" style="margin-left: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;"><a href="{{ $listItemType->previousPageUrl() }}" class="previous-page" style="  text-decoration: none;"><</a></button>
-        <span style="margin-left: 10px; margin-top:30px;">Trang {{ $listItemType->currentPage() }}/{{ $listItemType->lastPage() }}</span>
-        <button class="favorite styled" style="margin: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;"><a href="{{ $listItemType->nextPageUrl() }}" class="next-page" style="  text-decoration: none;">></a></button>
+        <button class="favorite styled" style="margin-left: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;"><a href="{{ $listPostType->previousPageUrl() }}" class="previous-page" style="  text-decoration: none;"><</a></button>
+        <span style="margin-left: 10px; margin-top:30px;">Trang {{ $listPostType->currentPage() }}/{{ $listPostType->lastPage() }}</span>
+        <button class="favorite styled" style="margin: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;"><a href="{{ $listPostType->nextPageUrl() }}" class="next-page" style="  text-decoration: none;">></a></button>
     </div>
 </form>
 
 <table class="styled-table">
     <thead>
         <tr>
-            <th>Tên loại bài đăng</th>
+            <th>Tên bài đăng</th>
             <th>Người đăng</th>
+            <th>Loại tin tức</th>
             <th>trạng thái</th>
             <th>Ngày đăng</th>
             <th>Chức năng</th>
         </tr>
     </thead>
     <tbody>
-    @foreach ($listItemType as $listItemType)
+    @foreach ($listPostType as $listPostType)
         <tr>
-            <td>{{$listItemType->name}}</td>
-            <td>{{$listItemType->created_by_name}}</td>
+            <td>{{$listPostType->title}}</td>
+            <td>{{$listPostType->created_by_name}}</td>
+            <td>{{$listPostType->item_type_name}}</td>
             <td>
-                @if($listItemType->status == 0)
+                @if($listPostType->status == 0)
                         Nháp
-                @elseif($listItemType->status == 1)
+                @elseif($listPostType->status == 1)
                         Xuất bản
                 @endif
             </td>
-            <td>{{$listItemType->created_at}}</td>
+            <td>{{$listPostType->created_at}}</td>
             <td>
-            <a href = "{{route('admin.loai-bai-dang.show', ['id' => $listItemType->id])}}" class="favorite styled" type="detail" style = " margin-right: 10px; background-color: rgb(0, 250, 54);">Chi tiết</a>
-            <a href = "{{route('admin.loai-bai-dang.chinh-sua', ['id' => $listItemType->id])}}" class="favorite styled" type="edit" style = " background-color: rgb(255, 0, 0); ">chỉnh sửa</a>
-            <form id="form-delete" action="{{ route('admin.loai-bai-dang.destroy', ['id' => $listItemType->id]) }}" method="POST">
+            <a href="{{ route('admin.bai-dang.show-post', ['id' => $listPostType->id]) }}" class="favorite styled" type="detail" style="margin-right: 10px; background-color: rgb(0, 250, 54);">Chi tiết</a>
+            <a href="{{ route('admin.bai-dang.chinh-sua', ['id' => $listPostType->id]) }}" class="favorite styled" type="detail" style="margin-right: 10px; background-color: red;">Chỉnh sửa</a>
+            <form id="form-delete" action="{{ route('admin.bai-dang.destroy', ['id' => $listPostType->id]) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" id="deleteButton" class="favorite styled" style="margin-right: 10px; background-color: rgb(0, 250, 54);">Xóa bài đăng</button>
@@ -85,7 +89,6 @@
             @if (session('error'))
                 swal("Lỗi", "{{ session('error') }}", "error");
             @endif
-        </script>
         </script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>

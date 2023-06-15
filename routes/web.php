@@ -39,7 +39,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'admin'], 
         Route::get('/chi-tiet/{id}', [AdminController::class, 'show'])->name('show-tai-khoan');
         Route::delete('/{id}', [AdminController::class, 'destroy'])->name('destroy');
         Route::get('/chinh-sua/{id}', [AdminController::class, 'edit'])->name('chinh-sua');
-        Route::post('/cap-nhat/{id}', [AdminController::class, 'update'])->name('cap-nhat');
+        Route::post('/chinh-sua/{id}', [AdminController::class, 'update'])->name('cap-nhat');
 
         
     });
@@ -48,19 +48,29 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'admin'], 
         Route::get('/', [ItemTypeController::class, 'index'])->name('index');
         Route::get('/them-loai-bai-dang', [ItemTypeController::class, 'showadd'])->name('showadd');
         Route::post('/them-loai-bai-dang', [ItemTypeController::class, 'create']);
+        Route::get('/chi-tiet/{id}', [ItemTypeController::class, 'show'])->name('show');
+        Route::get('/chinh-sua/{id}', [ItemTypeController::class, 'edit'])->name('chinh-sua');
+        Route::post('/chinh-sua/{id}', [ItemTypeController::class, 'update'])->name('cap-nhat');
+        Route::delete('/{id}', [ItemTypeController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix' => '/loai-bai-dang-con', 'as' => 'loai-bai-dang-con.'], function () {
         Route::get('/', [SubcategoryController::class, 'index'])->name('index');
         Route::get('/them', [SubcategoryController::class, 'showadd'])->name('showadd');
         Route::post('/them', [SubcategoryController::class, 'create'])->name('xu-li-them-loai-bai-dang-con');
-
+        Route::get('/chi-tiet/{id}', [SubcategoryController::class, 'show'])->name('show');
+        Route::get('/chinh-sua/{id}', [SubcategoryController::class, 'edit'])->name('chinh-sua');
+        Route::post('/chinh-sua/{id}', [SubcategoryController::class, 'update'])->name('cap-nhat');
+        Route::delete('/{id}', [SubcategoryController::class, 'destroy'])->name('destroy');
     });
     Route::group(['prefix' => '/bai-dang', 'as' => 'bai-dang.'], function () {
         Route::get('/', [PostController::class, 'index'])->name('index');
         Route::get('/them', [PostController::class, 'addpost'])->name('addpost');
         Route::post('/them', [PostController::class, 'create'])->name('xu-li-them-bai-dang');
-
+        Route::get('/chi-tiet/{id}', [PostController::class, 'show'])->name('show-post');
+        Route::get('/chinh-sua/{id}', [PostController::class, 'edit'])->name('chinh-sua');
+        Route::post('/chinh-sua/{id}', [PostController::class, 'update'])->name('cap-nhat');
+        Route::delete('/{id}', [PostController::class, 'destroy'])->name('destroy');
     });
 });
 
