@@ -1,0 +1,74 @@
+.mon {
+    border: 5px solid #CC0000;
+    border-radius: 30px;
+    float: left;
+    margin-top: 25px;
+    margin-left: 5%;
+    margin-right: 20px;
+}
+
+.mon td {
+    border: 2px;
+    padding-top: 2em;
+    padding: 1em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.heso {
+    border: 5px solid #00AA00;
+    border-radius: 30px;
+    width: 70%;
+    margin-top: 30px;
+    float: left;
+}
+
+.heso tr td {
+    text-align: center;
+    font-weight: 600;
+}
+
+.diem {
+    border: 5px solid #0000CC;
+    border-radius: 30px;
+    width: 70%;
+    margin-top: 10px;
+    float: left;
+}
+
+.diem tr td {
+    text-align: center;
+    font-weight: 200;
+    padding-top: 2em;
+    padding: 1em;
+}
+
+.trungbinh {
+    border: 5px solid #990066;
+    border-radius: 30px;
+    float: left;
+    margin-left: 10px;
+    margin-top: -34px;
+}
+
+.trungbinh td {
+    border: 2px;
+    padding-top: 2em;
+    padding: 1em;
+    text-align: center;
+    font-weight: 600;
+}
+
+.tong {
+    border: 5px solid #00AA00;
+    border-radius: 30px;
+    width: 50%;
+    margin-top: 15px;
+    margin-right: 100px;
+    float: right;
+}
+
+.tong tr td {
+    text-align: centers;
+    font-weight: 600;
+}

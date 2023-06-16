@@ -30,7 +30,7 @@ Route::get('hocba',[UserController::class,'hocba'])->name('hocba');
 Route::get('lienhe',[UserController::class,'lienhe'])->name('lienhe');
 Route::get('thongbao',[UserController::class,'thongbao'])->name('thongbao');
 Route::get('thongbaocanhan',[UserController::class,'thongbaocanhan'])->name('thongbaocanhan');
-
+Route::get('diem',[UserController::class,'diem'])->name('diem');
 
 
 /** đăng xuất */

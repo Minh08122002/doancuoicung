@@ -46,4 +46,8 @@ class UserController extends Controller
     {
         return view('user.thongbaocanhan');
     }
+    public function diem()
+    {
+        return view('user.diem');
+    }
 }
