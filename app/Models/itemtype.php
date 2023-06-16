@@ -26,4 +26,24 @@ class itemtype extends Model
         {
             return $this->hasMany(Subcategory::class, 'parent_id');
         }
+    public function itemType()
+        {
+            return $this->belongsTo(ItemType::class);
+        }
+    public function user()
+        {
+            return $this->belongsTo(User::class, 'created_by');
+        }
+    public function post()
+        {
+            return $this->hasMany(Post::class, 'item_type_id');
+        }
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
     }

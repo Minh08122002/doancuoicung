@@ -53,9 +53,8 @@
                   </button>
                   <div class="dropdown-menu">
                     <ul>
-                      <li><a href="#">General</a></li>
-                      <li><a href="#">Profile</a></li>
-                      <li><a href="#">Security</a></li>
+                      <li><a href="{{route('admin.tai-khoan.index')}}">Danh sách tài khoản</a></li>
+                      <li><a href="{{route('admin.tai-khoan.show-them-tai-khoan')}}">Thêm tài khoản</a></li>
                     </ul>
                   </div>
                 </div>
@@ -123,9 +122,9 @@
                   </button>
                   <div class="dropdown-menu">
                     <ul>
-                      <li><a href="#">Bài đăng</a></li>
-                      <li><a href="#">Loại bài đăng</a></li>
-                      <li><a href="{{route('admin.loai-bai-dang-con.index')}}">Loại bài đăng con</a></li>
+                      <li><a href="{{ route('admin.bai-dang.index') }}">Bài đăng</a></li>
+                      <li><a href="{{ route('admin.loai-bai-dang.index') }}">Loại bài đăng</a></li>
+                      <li><a href="{{ route('admin.loai-bai-dang-con.index')}}">Loại bài đăng con</a></li>
                     </ul>
                   </div>
                   <form action="{{ route('logout') }}" method="POST">

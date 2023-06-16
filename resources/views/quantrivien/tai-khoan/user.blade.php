@@ -3,7 +3,8 @@
 @section('title', 'Danh sách tài khoản')
 @section('content')
 <head>
-<link rel="stylesheet" href="{{ url('/css/item_type.css')}}">
+    <link rel="stylesheet" href="{{ url('/css/item_type.css')}}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <form action="{{ route('admin.tai-khoan.index') }}" method="GET">
     @csrf
@@ -60,21 +61,45 @@
             @if (session('role') == 0)
                 <a href="{{ route('admin.tai-khoan.show-tai-khoan', ['id' => $listUser->id]) }}" class="favorite styled" style="margin-right: 10px; background-color: rgb(0, 250, 54);">Chi tiết</a>    
                 <a href="{{ route('admin.tai-khoan.chinh-sua', ['id' => $listUser->id]) }}" class="favorite styled" style="margin-right: 10px; background-color: rgb(0, 250, 54);">Chỉnh sửa</a>    
-                    <form action="{{ route('admin.tai-khoan.destroy', ['id' => $listUser->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="favorite styled" style="margin-right: 10px; background-color: rgb(0, 250, 54);">Xóa tài khoản</button>
-                </form>
-            @elseif ($listUser->role == 2)
-                <a href="{{ route('admin.tai-khoan.show-tai-khoan', ['id' => $listUser->id]) }}" class="favorite styled" style="margin-right: 10px; background-color: rgb(0, 250, 54);">Chi tiết</a>
-                <button class="favorite styled" type="edit" style = " background-color: rgb(255, 0, 0); ">chỉnh sửa</button>
-            @endif
+                    <form id="form-delete" action="{{ route('admin.tai-khoan.destroy', ['id' => $listUser->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" id="deleteButton" class="favorite styled" style="margin-right: 10px; background-color: rgb(0, 250, 54);">Xóa tài khoản</button>
+                    </form>
+
+                    @elseif ($listUser->role == 2)
+                        <a href="{{ route('admin.tai-khoan.show-tai-khoan', ['id' => $listUser->id]) }}" class="favorite styled" style="margin-right: 10px; background-color: rgb(0, 250, 54);">Chi tiết</a>
+                        <button class="favorite styled" type="edit" style = " background-color: rgb(255, 0, 0); ">chỉnh sửa</button>
+                    @endif
             </td>
         </tr>
     @endforeach
         <!-- and so on... -->
     </tbody>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        document.getElementById("deleteButton").addEventListener("click", function(event) {
+            event.preventDefault(); // Ngăn chặn sự kiện mặc định của nút xóa
+            swal({
+                title: "Bạn có muốn xóa tài khoản?",
+                text: "Nhấn OK để tiếp tục, Cancel để hủy.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Xóa thành công!", {
+                            icon: "success",
+                        });
+                        // Thực hiện hành động xóa tại đây
+                        document.getElementById("form-delete").submit();
+                } else {
+                    // Hủy hành động xóa
+                    swal("Hủy thành công!");
+                }
+            });
+        });
+    </script>
 </table>
-
-
 @endsection

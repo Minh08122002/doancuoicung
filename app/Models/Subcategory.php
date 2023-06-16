@@ -20,4 +20,11 @@ class Subcategory extends Model
     {
         return $this->belongsTo(itemtype::class, 'parent_id');
     }
+    protected static function booted()
+    {
+        static::deleted(function ($subcategory) {
+            // Tìm và xóa các bài đăng có parent_id tương ứng với Subcategory bị xóa
+            Post::where('parent_id', $subcategory->id)->delete();
+        });
+    }
 }

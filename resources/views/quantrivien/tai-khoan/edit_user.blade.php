@@ -37,7 +37,7 @@
       <input type="text" name="address" id="address" placeholder="{{$user->address}}">
     </div>
     <div class="inputs">
-    <h3 style="padding-right: 10px;">Trạng thái: </h3>
+    <h3 style="padding-right: 10px;">Chức vụ: </h3>
      <select class="mySelect" style="height: 40px; width: 110px; margin-right: 10px;" name="role">
             <option value="2">Giáo viên</option>
             <option value="1">Quản trị viên</option>
@@ -48,6 +48,18 @@
       <label for="avatar" style="margin-right: 10px;">Ảnh đại diện: </label>
       <input type="file" name="avatar" id="avatar">
     </div>
-    <button type="submit" style=" float: right; margin-left: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;">Xác nhận</button>
-</form>
+    <button type="submit" style="float: right; margin-left: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;">Xác nhận</button>
+    </form>
+
+    @include('sweetalert::alert')
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+    <script>
+        @if (session('success'))
+            swal("Thành công", "{{ session('success') }}", "success");
+        @endif
+
+        @if (session('error'))
+            swal("Lỗi", "{{ session('error') }}", "error");
+        @endif
+    </script>
 @endsection
