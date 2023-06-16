@@ -10,10 +10,10 @@
 
 <body>
     <div style="background-color: #1A9317;height: 200px; text-align: center;">
-        <img style="width: 300px;height: 300px;padding-top: 30px;" src="">
+        <img style="width: 300px;height: 300px;padding-top: 30px;" src="/images/LOGOn.png">
     </div>
     <div id="wrapper">
-        <form action="{{ route('login')}}" method="post" id="form-login">
+        <form action="{{ route('dang-nhap')}}" method="post" id="form-login">
             @csrf
             <h1 class="form-heading">ĐĂNG NHẬP</h1>
             <div class="form-group">

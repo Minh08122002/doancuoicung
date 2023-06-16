@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url('/css/item_type.css')}}">
 </head>
 <h2 style="text-align: center;">Thêm loại tin tức con</h2>
-<form action="{{ route('loai-bai-dang-con.xu-li-them-loai-bai-dang-con') }}" method="POST">
+<form action="{{ route('admin.loai-bai-dang-con.xu-li-them-loai-bai-dang-con') }}" method="POST">
     @csrf
     <div class="container">
         <h2 class="items">Chọn loại bài đăng cha: </h2>

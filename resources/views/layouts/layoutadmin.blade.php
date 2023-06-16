@@ -5,8 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- link icon -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
         <!-- link css -->
         <link rel="stylesheet" href="{{ url('/css/layout.css')}}">
         <title>@yield('title')</title>
@@ -24,6 +25,7 @@
             border-right: 1px solid rgba(0, 0, 0, 0.23);
           }
         </style>
+        
     </head>
     <body>
         <header>
@@ -32,10 +34,14 @@
             <div class="sidebar" style=" left: 0px; top: 0px; ">
                 <div class="card-container">
                     <div class="card">
-                      <img class="card-avatar" src="#" alt="Avatar 1">
+                    @if ($avatarUrl == Null)
+                      <img src="{{asset('images/avatar.jpg')}}" alt="photo" style="width: 60px; display: block;width: 50px;height: 50px;border-radius: 50%; margin-right: 10px;">
+                    @else
+                      <img src="{{  $avatarUrl }}" alt="photo" style="width: 60px; display: block;width: 50px;height: 50px;border-radius: 50%; margin-right: 10px;">
+                    @endif
                       <div class="card-content">
-                        <h2 class="card-title">admin</h2>
-                        <p class="card-description">admin@gmail.com</p>
+                        <h2 class="card-title">{{ session('name') }}</h2>
+                        <p class="card-description">{{ session('email') }}</p>
                       </div>
                     </div>
                 </div>
@@ -119,9 +125,13 @@
                     <ul>
                       <li><a href="#">Bài đăng</a></li>
                       <li><a href="#">Loại bài đăng</a></li>
-                      <li><a href="{{route('loai-bai-dang-con.index')}}">Loại bài đăng con</a></li>
+                      <li><a href="{{route('admin.loai-bai-dang-con.index')}}">Loại bài đăng con</a></li>
                     </ul>
                   </div>
+                  <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit">Đăng xuất</button>
+              </form>
                 </div>
               </div>
             <!-- Page content -->
@@ -142,6 +152,11 @@
                 dropdownMenu.classList.toggle('show');
               });
             });
+          </script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+          <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+          <script>
+          CKEDITOR.replace( '' );
           </script>
     </body>
 </html>

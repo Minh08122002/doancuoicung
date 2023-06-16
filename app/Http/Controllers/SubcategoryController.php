@@ -23,11 +23,7 @@ class SubcategoryController extends Controller
     {
         $itemType = ItemType::all();
         $uniqueItemType = $itemType->unique('name');
-
-        
-
-
-        return view('quantrivien.add_subcategory',['uniqueItemType'=>$uniqueItemType]);
+        return view('quantrivien.loai-bai-dang-con.add_subcategory',['uniqueItemType'=>$uniqueItemType]);
     }
     public function create(Request $request){
         

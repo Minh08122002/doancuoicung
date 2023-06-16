@@ -1,0 +1,30 @@
+.the {
+    border: 8px solid;
+    width: 35%;
+    text-align: center;
+    border-image-source: linear-gradient(to right, #e1000080, #5bf304a8, #03f4f0a6);
+    border-image-slice: 1;
+    margin-left: 10%;
+    margin-top: 20px;
+    font-weight: solid;
+    font-size: 20px;
+    float: left;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border: 3px solid;
+    border-radius: 90%;
+    margin-top: 5px;
+}
+
+.chitiet {
+    border-radius: 27px;
+    border: 2px solid black;
+    background-color: #1aff00;
+    width: 120px;
+    height: 45px;
+    font-weight: 700;
+    color: white;
+}

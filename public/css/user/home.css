@@ -15,15 +15,10 @@
 }
 
 .table2 {
-    float: right;
-}
-
-.table2 {
     width: 30%;
-    border: 2px solid;
     padding: 1.5em;
     border-collapse: collapse;
-    border-color: #00FF15;
+    float: right;
 }
 
 .td2 {

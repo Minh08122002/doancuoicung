@@ -10,19 +10,19 @@
 <body>
 	<header class="header">
 		<div class="inner">
-			<div class="logo"><img style="margin-left:20px;width: 80px;height: 80px;" src="/image/LOGOn.png"></div>
+			<div class="logo"><img style="margin-left:20px;width: 80px;height: 80px;" src="/images/LOGOn.png"></div>
 			<div class="burger"></div>
 			    <div id="menu">
                     <ul class="dropdown">
                         <li >
 				            <button >
-                                <a style="color:#1A9317;font-weight: bold;" class="active" href="#">GIỚI THIỆU</a>
+                                <a style="color:#1A9317;font-weight: bold;" class="active">GIỚI THIỆU</a>
                             </button>
                         </li>
                         <ul class="dropdown-content">
-                            <li>GIỚI THIỆU NHÀ TRƯỜNG</li>
-                            <li>CƠ CẤU TỔ CHỨC</li>
-                            <li>LIÊN HỆ</li>
+                            <li><a href="{{route('gioithieu')}}">GIỚI THIỆU NHÀ TRƯỜNG</a></li>
+                            <li><a href="{{route('cocautochuc')}}">CƠ CẤU TỔ CHỨC</a></li>
+                            <li><a href="{{route('lienhe')}}">LIÊN HỆ</a></li>
                         </ul>
                     </ul>
                     <ul class="dropdown">
@@ -32,43 +32,43 @@
                             </button>
                         </li>
                         <ul class="dropdown-content">
-                            <li>TIN TỨC</li>
+                          
                         </ul>
                     </ul>
                     <ul class="dropdown">
                         <li >
 				            <button >
-                                <a style="color:#1A9317;font-weight: bold;" class="active" href="#">HOẠT ĐỘNG</a>
+                                <a style="color:#1A9317;font-weight: bold;" class="active" href="{{route('hoatdong')}}">HOẠT ĐỘNG</a>
                             </button>
                         </li>
                         <ul class="dropdown-content">
-                            <li>HOẠT ĐỘNG</li>
+                           
                         </ul>
                     </ul>
                     <ul class="dropdown">
                         <li >
 				            <button >
-                                <a style="color:#1A9317;font-weight: bold;" class="active" href="#">CÔNG VĂN</a>
+                                <a style="color:#1A9317;font-weight: bold;" class="active" href="{{route('congvan')}}">CÔNG VĂN</a>
                             </button>
                         </li>
                         <ul class="dropdown-content">
-                            <li>CÔNG VĂN</li>
+                        
                         </ul>
                     </ul>
                     <ul class="dropdown">
                         <li >
 				            <button >
-                                <a style="color:#1A9317;font-weight: bold;" class="active" href="#">ẢNH</a>
+                                <a style="color:#1A9317;font-weight: bold;" class="active" href="{{route('anh')}}">ẢNH</a>
                             </button>
                         </li>
                         <ul class="dropdown-content">
-                            <li>ẢNH</li>
+                          
                         </ul>
                     </ul>
                     <ul class="dropdown">
                         <li >
 				            <button >
-                                <a style="color:#1A9317;font-weight: bold;" class="active" href="#">HỌC BẠ</a>
+                                <a style="color:#1A9317;font-weight: bold;" class="active" href="{{route('hocba')}}">HỌC BẠ</a>
                             </button>
                         </li>
                         <ul class="dropdown-content">
@@ -78,7 +78,7 @@
                     <ul class="dropdown">
                         <li >
 				            <button >
-                                <a style="color:#1A9317;font-weight: bold;" class="active" href="#">QUẢN TRỊ</a>
+                                <a style="color:#1A9317;font-weight: bold;" class="active" href="{{route('dang-nhap')}}">QUẢN TRỊ</a>
                             </button>
                         </li>
                         <ul class="dropdown-content">
@@ -88,10 +88,12 @@
                 </div>
 		</div>
         <hr>
-        <div class="banner"><img style="width: 1100px;height: 130px;" src="/image/banner.png"></div>
+        <div class="banner"><img style="width: 1100px;height: 130px;" src="/images/banner.png"></div>
 	</header>
     <!-- content -->
+    <main class="main">
     @yield('content')
+    </main>
     <!-- kết thúc -->
     <footer class="footer">
     <div class="waves">
@@ -142,3 +144,4 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   </body>
+</html>
