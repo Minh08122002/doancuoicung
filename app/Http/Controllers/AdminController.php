@@ -99,7 +99,7 @@ class AdminController extends Controller
 
     public function create()
     {
-        return view('layouts.footer');
+       //
     }
     /**
      * Show the form for creating a new resource.
@@ -155,6 +155,16 @@ class AdminController extends Controller
             $avatarUrl = null;
         }
         $user = User::find($id);
+<<<<<<< HEAD
+        $user->password = hash::make($request->input('password'))?hash::make($request->input('password')):null;
+        $user->name = $request->input('name') ? $request->input('name') : null;
+        $user->phone = $request->input('phone') ? $request->input('phone'):null;
+        $user->address = $request->input('address')?$request->input('address'):null;
+        $user->name = $request->input('role')?$request->input('role'):null;
+        $user->avatar = $avatarUrl;
+        // Lưu thay đổi vào cơ sở dữ liệu
+        $user->save();
+=======
         $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
         $user->name = $request->input('name') ?? $user->name;
         $newPhone = $request->input('phone') ?? $user->phone;
@@ -164,6 +174,7 @@ class AdminController extends Controller
                 Alert::error('Lỗi', 'Số điện thoại đã tồn tại.');
                 return redirect()->back()->withInput();
             }
+>>>>>>> 0ca3a5c02559b30c79c4a39dd444a217e571e88d
     
             // Cập nhật số điện thoại
         $user->phone = $newPhone;

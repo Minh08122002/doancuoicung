@@ -1,0 +1,103 @@
+.table1 {
+    float: left;
+}
+
+.table1,
+.td1 {
+    width: 40%;
+    border-radius: 20%;
+    border: 3px solid #00000000;
+    border-image-source: linear-gradient(to right, #4caf5080, #9c27b0a8, #03a9f4a6);
+    border-image-slice: 1;
+    margin: 0px;
+    padding: 1.5em;
+    vertical-align: baseline;
+}
+
+.table2 {
+    width: 30%;
+    padding: 1.5em;
+    border-collapse: collapse;
+    float: right;
+}
+
+.td2 {
+    padding: 1.5em;
+}
+
+.table3 {
+    float: right;
+    width: 80%;
+    border: 2px solid;
+    padding: 1.5em;
+    border-collapse: collapse;
+}
+
+.mySlides3 {
+    display: none;
+    width: 100%
+}
+
+.display-container {
+    position: relative
+}
+
+
+/*---Css Nút qua lại---*/
+
+.button-left {
+    left: 1%;
+    font-size: 20px
+}
+
+.button-right {
+    right: 1%;
+    font-size: 20px
+}
+
+.image-button {
+    border: none;
+    display: inline-block;
+    padding: 10px;
+    height: 50px;
+    vertical-align: middle;
+    overflow: hidden;
+    color: #fff;
+    background: #000;
+    position: absolute;
+    top: calc(50% - 25px);
+    opacity: 0.5;
+}
+
+.image-button:hover {
+    color: #000;
+    background: #ccc;
+}
+
+
+/*---Css Chấm tròn---*/
+
+.badge {
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 20px;
+    position: absolute;
+    bottom: 0;
+}
+
+.badge-white {
+    color: #000!important;
+    background-color: #fff!important
+}
+
+.image-badge {
+    display: inline-block;
+    border-radius: 50%;
+    height: 14px;
+    width: 14px;
+    border: 1px solid #ccc;
+}
+
+.image-badge:hover {
+    background: #fff;
+}

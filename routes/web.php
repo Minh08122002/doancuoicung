@@ -7,6 +7,8 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +22,18 @@ use App\Http\Controllers\StudentController;
 */
 Route::get('dang-nhap',[AdminController::class,'login'])->name('dang-nhap');
 Route::post('dang-nhap',[AdminController::class,'store'])->name('dang-nhap');
-Route::get('di',[AdminController::class,'create'])->name('di');
 
+Route::get('home',[UserController::class,'home']);
+Route::get('anh',[UserController::class,'anh'])->name('anh');
+Route::get('cocautochuc',[UserController::class,'cocautochuc'])->name('cocautochuc');
+Route::get('congvan',[UserController::class,'congvan'])->name('congvan');
+Route::get('gioithieu',[UserController::class,'gioithieu'])->name('gioithieu');
+Route::get('hoatdong',[UserController::class,'hoatdong'])->name('hoatdong');
+Route::get('hocba',[UserController::class,'hocba'])->name('hocba');
+Route::get('lienhe',[UserController::class,'lienhe'])->name('lienhe');
+Route::get('thongbao',[UserController::class,'thongbao'])->name('thongbao');
+Route::get('thongbaocanhan',[UserController::class,'thongbaocanhan'])->name('thongbaocanhan');
+Route::get('diem',[UserController::class,'diem'])->name('diem');
 
 
 /** đăng xuất */
