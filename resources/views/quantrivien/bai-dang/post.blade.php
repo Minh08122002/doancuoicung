@@ -26,13 +26,16 @@
         <h3 class="items">Loại:</h3>
         <select class="mySelect" style="height: 40px; margin-top: 18px;" name="name">
             <option value="">Loại</option>
-           @foreach($uniqueItemType as $item)
-                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                @foreach($item->children as $child)
-                    <option value="{{ $child->name }}" style="padding: 20px;">{{ $child->name }}</option>
-                @endforeach
+          @foreach($uniqueItemType as $item)
+                @if($item->status != 0)
+                    <option value="{{ $item->name }}">{{ $item->name }}</option>
+                    @foreach($item->children as $child)
+                        @if($child->status != 0)
+                            <option value="{{ $child->name }}" style="padding: 20px;">{{ $child->name }}</option>
+                        @endif
+                    @endforeach
+                @endif
             @endforeach
-
         </select>
         <button class="favorite styled" type="submit" style="margin-left: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;">Lọc</button>
         <button class="favorite styled" style="margin-left: 10px; margin-top: 17px; background-color: rgb(0, 250, 54); height: 40px;"><a href="{{ $listPostType->previousPageUrl() }}" class="previous-page" style="  text-decoration: none;"><</a></button>

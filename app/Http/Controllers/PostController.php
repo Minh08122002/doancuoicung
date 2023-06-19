@@ -65,7 +65,7 @@ class PostController extends Controller
     public function addpost()
     {
         $itemType = ItemType::all();
-        $uniqueItemType = ItemType::pluck('name', 'id')->unique('name');;
+        $uniqueItemType = $itemType->unique('name');
         $uniqueItemType = ItemType::with('children')->get();
         return view('quantrivien.bai-dang.add_post',['uniqueItemType'=>$uniqueItemType]);
     }
@@ -75,7 +75,10 @@ class PostController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:post,title'
+            'title' => 'required|unique:post,title',
+            'parent_id'=>'required',
+            'content'=>'required',
+            'status'=>'required',
         ]);
     
         if ($validator->fails()) {

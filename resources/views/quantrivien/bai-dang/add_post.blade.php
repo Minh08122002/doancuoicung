@@ -34,11 +34,14 @@
       <h3 style="padding:10px">Loại:</h3>
         <select class="mySelect" style="height: 40px;margin-right: 10px;" name="parent_id">
                 <option value="">Loại</option>
-                @foreach($uniqueItemType as $itemType)
-                <option value="{{ $itemType->id }}">{{ $itemType->name }}</option>
-                @foreach($itemType->children as $child)
-                    <option value="{{ $child->id }}" style="padding: 20px;">{{ $child->name }}</option>
+                @foreach($uniqueItemType as $uniqueItemType)
+                @if ($uniqueItemType->status == 1)
+                    <option value="{{ $uniqueItemType->id }}">{{ $uniqueItemType->name }}</option>
+                @foreach($uniqueItemType->children as $child)
+                    <option value="{{ $child->id }}" class = "child-option" style="padding: 20px; style="padding-left: 20px;">{{ $child->name }}</option>
                 @endforeach
+                @endif
+                
             @endforeach
         </select>
   </div>
@@ -54,7 +57,6 @@
             @if (session('success'))
                 swal("Thành công", "{{ session('success') }}", "success");
             @endif
-
             @if (session('error'))
                 swal("Lỗi", "{{ session('error') }}", "error");
             @endif

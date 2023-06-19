@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;   
 use Illuminate\Http\Request;
 use App\Models\itemtype;
 use App\Models\Subcategory;
@@ -38,10 +38,18 @@ class SubcategoryController extends Controller
         return view('quantrivien.loai-bai-dang-con.add_subcategory',['uniqueItemType'=>$uniqueItemType]);
     }
     public function create(Request $request){
-        
+        $validator = Validator::make($request->all(), [
+            'parent_id' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            Alert::error('Thất bại', 'Tạo loại bài đăng con không thành công.');
+            return redirect()->back();
+        }
         $subcategory = new Subcategory();
         $subcategory->name = $request->input('name');
         $subcategory->parent_id = $request->input('parent_id');
+        $subcategory->status = $request->input('status');
         $subcategory->save();
     
         // Thực hiện các thao tác khác hoặc chuyển hướng
@@ -92,6 +100,7 @@ class SubcategoryController extends Controller
         $subcategory = Subcategory::find($id);
         $subcategory->name = $request->input('name') ?? $subcategory->name;
         $subcategory->parent_id = $request->input('parent_id')??$subcategory->parent_id;
+        $subcategory->status = $request->input('status')??$subcategory->status;
         $subcategory->updated_at = now();
         $subcategory->save();
 

@@ -80,8 +80,8 @@
                   </button>
                   <div class="dropdown-menu">
                     <ul>
-                      <li><a href="#">General</a></li>
-                      <li><a href="#">Profile</a></li>
+                      <li><a href="{{route('admin.lop-hoc.index')}}">Danh sách lớp học</a></li>
+                      <li><a href="{{route('admin.hoc-sinh.addstudent')}}">Thêm chi tiết học sinh</a></li>
                       <li><a href="#">Security</a></li>
                     </ul>
                   </div>

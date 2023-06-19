@@ -46,4 +46,11 @@ class itemtype extends Model
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
+    protected static function booted()
+    {
+        static::deleted(function ($itemtype) {
+            // Tìm và xóa các bài đăng có parent_id tương ứng với Subcategory bị xóa
+            Subcategory::where('parent_id', $itemtype->id)->delete();
+        });
+    }
     }

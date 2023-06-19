@@ -12,7 +12,7 @@ class Subcategory extends Model
     use SoftDeletes;
     
     protected $table = 'Subcategory';
-    protected $fillable = ['name','parent_id'];
+    protected $fillable = ['name','parent_id','status'];
 
 
     /* Mỗi bản trong bảng Subcategory có thể thuộc về một bản ghi cha */

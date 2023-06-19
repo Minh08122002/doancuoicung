@@ -29,5 +29,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(ProductType::class, 'updated_by');
     }
+    
     public $timestamps = true;
+    public function room()
+    {
+        return $this->hasOne(Room::class, 'user_id_1', 'id')
+                    ->orWhere('user_id_2', $this->id);
+    }
+
+
 }

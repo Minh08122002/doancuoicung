@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Subcategory', function (Blueprint $table) {
+        Schema::create('student', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->tinyInteger('status')->default('0');
+            $table->unsignedBigInteger('user_id')->nullable();;
+            $table->string('room_id')->nullable();;
+            $table->string('address');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('parent_id')->references('id')->on('item_type')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('set null');
+            $table->foreign('room_id')->references('id')->on('room')->onDelete('set null');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Subcategorys');
+        Schema::dropIfExists('student');
     }
 };

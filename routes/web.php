@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ItemTypeController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,10 +42,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'admin'], 
         Route::delete('/{id}', [AdminController::class, 'destroy'])->name('destroy');
         Route::get('/chinh-sua/{id}', [AdminController::class, 'edit'])->name('chinh-sua');
         Route::post('/chinh-sua/{id}', [AdminController::class, 'update'])->name('cap-nhat');
-
-        
     });
-
     Route::group(['prefix' => '/loai-bai-dang', 'as' => 'loai-bai-dang.'], function () {
         Route::get('/', [ItemTypeController::class, 'index'])->name('index');
         Route::get('/them-loai-bai-dang', [ItemTypeController::class, 'showadd'])->name('showadd');
@@ -71,6 +70,24 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'admin'], 
         Route::get('/chinh-sua/{id}', [PostController::class, 'edit'])->name('chinh-sua');
         Route::post('/chinh-sua/{id}', [PostController::class, 'update'])->name('cap-nhat');
         Route::delete('/{id}', [PostController::class, 'destroy'])->name('destroy');
+    });
+    Route::group(['prefix' => '/lop-hoc', 'as' => 'lop-hoc.'], function () {
+        Route::get('/', [RoomController::class, 'index'])->name('index');
+        Route::get('/them', [RoomController::class, 'create'])->name('create');
+        Route::post('/them', [RoomController::class, 'store'])->name('store');
+        Route::get('/chi-tiet/{id}', [RoomController::class, 'show'])->name('show');
+        Route::get('/chinh-sua/{id}', [RoomController::class, 'edit'])->name('edit');
+        Route::post('/chinh-sua/{id}', [RoomController::class, 'update'])->name('update');
+        Route::delete('/{id}', [RoomController::class, 'destroy'])->name('destroy');
+    });
+    Route::group(['prefix' => '/hoc-sinh', 'as' => 'hoc-sinh.'], function () {
+        Route::get('/', [StudentController::class, 'index'])->name('index');
+        Route::get('/them', [StudentController::class, 'addstudent'])->name('addstudent');
+        Route::post('/them', [StudentController::class, 'create'])->name('create');
+        Route::get('/chi-tiet/{id}', [StudentController::class, 'show'])->name('show');
+        Route::get('/chinh-sua/{id}', [StudentController::class, 'edit'])->name('edit');
+        Route::post('/chinh-sua/{id}', [StudentController::class, 'update'])->name('update');
+        Route::delete('/{id}', [StudentController::class, 'destroy'])->name('destroy');
     });
 });
 

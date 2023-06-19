@@ -59,17 +59,23 @@ class ItemTypeController extends Controller
     }
     public function create(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:item_type', // Kiểm tra tên loại bài đăng là duy nhất trong bảng 'item_types'
-            // Các quy tắc kiểm tra khác (nếu có)
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:item_type',
+            'comments'=>'required',
+            'status'=>'required',
         ]);
+    
+        if ($validator->fails()) {
+            Alert::error('Thất bại', 'Tạo loại bài đăng con không thành công.');
+            return redirect()->back();
+        }
         $itemType = new ItemType();
-        $itemType->name = $validatedData['name'];
+        $itemType->name = $request->input('name');
         $itemType->created_by = Auth::id();
         $itemType->comments = $request->input('comments');
         $itemType->status = $request->input('status');
         $itemType->save();
-    
+        Alert::success('Thành công', 'Đăng bài đăng thành công.');
         return redirect()->back();
     }
 
